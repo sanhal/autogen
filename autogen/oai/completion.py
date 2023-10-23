@@ -223,7 +223,12 @@ class Completion(openai_Completion):
                     config["request_timeout"] = request_timeout
                 api_type = config.get("api_type", None)
                 if api_type and re.sub(r'[^a-zA-Z0-9]', '', api_type).lower() == "litellm":
-                    response = litellm.completion(**config)
+                    try:
+                        config.pop("api_type")
+                        response = litellm.completion(**config)
+                    except:
+                        config["api_type"] = api_type
+                        raise
                 else:
                     response = openai_completion.create(**config)
             except (

@@ -7,7 +7,7 @@ import logging
 from dotenv import find_dotenv, load_dotenv
 
 
-NON_CACHE_KEY = ["api_key", "api_base", "api_type", "api_version"]
+NON_CACHE_KEY = ["api_key", "api_base", "api_type", "api_version", "aws_bedrock_client"]
 
 
 def get_key(config):
